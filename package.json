@@ -1,0 +1,62 @@
+{
+  "name": "create-or-update-pull-request-action",
+  "private": true,
+  "version": "1.10.1",
+  "description": "A GitHub Action to create or update a pull request based on local changes",
+  "main": "index.js",
+  "scripts": {
+    "build": "ncc build index.js -o dist"
+  },
+  "repository": "github:step-security/create-or-update-pull-request-action",
+  "release": {
+    "branches": [
+      "+([0-9]).x",
+      "master",
+      "next"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/github",
+      [
+        "@semantic-release/npm",
+        {
+          "npmPublish": false
+        }
+      ],
+      [
+        "@semantic-release/exec",
+        {
+          "publishCmd": "npm run build"
+        }
+      ],
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "package.json",
+            "dist/index.js"
+          ],
+          "message": "build(release): compiled action for ${nextRelease.version}\n\n[skip ci]"
+        }
+      ]
+    ]
+  },
+  "keywords": [
+    "github-action"
+  ],
+  "author": "step-security",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.10.0",
+    "@octokit/core": "^3.5.1",
+    "axios": "^1.9.0",
+    "execa": "^2.0.4"
+  },
+  "devDependencies": {
+    "@semantic-release/exec": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@vercel/ncc": "^0.38.1",
+    "semantic-release": "^23.0.6"
+  }
+}
