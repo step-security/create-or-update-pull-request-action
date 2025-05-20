@@ -34,7 +34,7 @@ async function main() {
     core.setFailed(
       `GITHUB_TOKEN is not configured. Make sure you made it available to your action
 
-  uses: gr2m/create-or-update-pull-request-action@master
+  uses: step-security/create-or-update-pull-request-action@main
   env:
     GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}`
     );
@@ -386,7 +386,6 @@ async function checkOutRemoteBranch(branch) {
         `git cherry-pick --strategy recursive --strategy-option theirs ${TEMPORARY_BRANCH_NAME}`
       );
     } catch (error) {
-      // https://github.com/gr2m/create-or-update-pull-request-action/issues/245
       if (/The previous cherry-pick is now empty/.test(error.stderr)) {
         await runShellCommand(`git cherry-pick --skip`);
       }
