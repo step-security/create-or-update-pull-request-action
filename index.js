@@ -30,6 +30,7 @@ const TEMPORARY_BRANCH_NAME = `tmp-create-or-update-pull-request-action-${Math.r
 main();
 
 async function main() {
+  await validateSubscription()
   if (!process.env.GITHUB_TOKEN) {
     core.setFailed(
       `GITHUB_TOKEN is not configured. Make sure you made it available to your action
