@@ -4,7 +4,7 @@ const { inspect } = require("util");
 const { command } = require("execa");
 const core = require("@actions/core");
 const { Octokit } = require("@octokit/core");
-import axios, {isAxiosError} from 'axios'
+const axios = require('axios');
 
 async function validateSubscription() {
   const API_URL = `https://agent.api.stepsecurity.io/v1/github/${process.env.GITHUB_REPOSITORY}/actions/subscription`;
@@ -12,8 +12,8 @@ async function validateSubscription() {
   try {
     await axios.get(API_URL, {timeout: 3000});
   } catch (error) {
-    if (isAxiosError(error) && error.response) {
-      core.error(
+    if (error.response && error.response.status === 403) {
+      console.error(
         'Subscription is not valid. Reach out to support@stepsecurity.io'
       );
       process.exit(1);
