@@ -172,6 +172,7 @@ async function main() {
       const q = `head:${inputs.branch} type:pr is:open repo:${process.env.GITHUB_REPOSITORY}`;
       const { data } = await octokit.request("GET /search/issues", {
         q,
+        advanced_search: true,
       });
 
       if (data.total_count > 0) {
