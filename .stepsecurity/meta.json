@@ -1,0 +1,18 @@
+{
+   "schema_version": "1",
+   "onboarding_type": "copied",
+   "archived": false,
+   "maintained_action_name": "step-security/create-or-update-pull-request-action",
+   "upstream_full_repo_name": "gr2m/create-or-update-pull-request-action",
+   "action_type": "node",
+   "last_release": {
+     "tag_name": "v1.10.3",
+     "created_at": "2026-05-20T12:10:40Z",
+     "published_at": "2026-05-23T15:31:44Z"
+   },
+   "sync": {
+     "ignore_presets": [
+       "defaults_v1"
+     ]
+   }
+ }
